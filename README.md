@@ -7,17 +7,13 @@
 - Tailwind CSS
 - Astro DB
 
-## Install dependencies
+## Getting Started
 
-```bash
-bun install
-```
+1. Install dependencies: `bun install`
 
-## Start in Dev Mode
+2. Clonar .env.template y renombrar a .env
 
-```bash
-bun run dev
-```
+3. Start in Dev Mode `bun run dev`
 
 ## Build to Production
 
