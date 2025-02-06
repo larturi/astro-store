@@ -109,17 +109,15 @@ import AuthLayout from '@/layouts/AuthLayout.astro'
       redirect: false
     } as any)
 
-    // console.log(resp)
-
-    // if (!resp?.ok) {
-    //   Swal.fire({
-    //     icon: 'error',
-    //     title: 'Error al ingresar',
-    //     text: 'Usuario / Contraseña no son correctos'
-    //   })
-    //   btnSubmit.removeAttribute('disabled')
-    //   return
-    // }
+    if (resp) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error al ingresar',
+        text: 'Usuario / Contraseña no son correctos'
+      })
+      btnSubmit.removeAttribute('disabled')
+      return
+    }
 
     window.location.replace('/')
   })
