@@ -1,27 +1,27 @@
 ---
 import '@/styles/global.css'
-import { getSession } from 'auth-astro/server'
+// import { getSession } from 'auth-astro/server'
 import MainLayout from '@/layouts/MainLayout.astro'
+import { actions } from 'astro:actions'
 
 export const prerender = false
 
-const session = await getSession(Astro.request)
+// const session = await getSession(Astro.request)
 
-const { user } = session ?? {}
+// const { user } = session ?? {}
+
+const { data: products, error } = await Astro.callAction(
+  actions.getProductsByPage,
+  {}
+)
+
+if (error) {
+  return Astro.redirect('/')
+}
+
+console.log(products)
 ---
 
 <MainLayout>
   <h1 class='text-3xl'>Home Page</h1>
-
-  <div class='mt-3'>
-    {
-      user ? (
-        <span>Welcome back, {user.name}!</span>
-
-        <p>Email: {user.email}</p>
-      ) : (
-        <span>You are not logged in.</span>
-      )
-    }
-  </div>
 </MainLayout>
