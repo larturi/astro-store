@@ -133,13 +133,12 @@ import AuthLayout from '@/layouts/AuthLayout.astro'
       if (true) {
         alert('error.message')
         bntGoogle.removeAttribute('disabled')
+        bntGoogle.innerText = 'Redireccionando...'
+        window.location.replace('/')
         return
       }
-
-      bntGoogle.innerText = 'Redireccionando...'
-      window.location.replace('/')
     } catch (error) {
-      console.log(error)
+      console.error(error)
       bntGoogle.removeAttribute('disabled')
     }
   })

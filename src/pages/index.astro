@@ -11,15 +11,13 @@ export const prerender = false
 // const { user } = session ?? {}
 
 const { data: products, error } = await Astro.callAction(
-  actions.getProductsByPage,
+  actions.getProductsByPageRowQuery,
   {}
 )
 
 if (error) {
   return Astro.redirect('/')
 }
-
-console.log(products)
 ---
 
 <MainLayout>

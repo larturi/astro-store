@@ -25,8 +25,6 @@ export default defineConfig({
           throw new Error('Invalid credentials')
         }
 
-        console.log(222222)
-
         const { password: _, ...rest } = user
 
         return rest
