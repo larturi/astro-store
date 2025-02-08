@@ -1,16 +1,13 @@
 ---
 import '@/styles/global.css'
-// import { getSession } from 'auth-astro/server'
+
 import MainLayout from '@/layouts/MainLayout.astro'
 import { actions } from 'astro:actions'
+import ProductList from '@/components/products/ProductList'
 
 export const prerender = false
 
-// const session = await getSession(Astro.request)
-
-// const { user } = session ?? {}
-
-const { data: products, error } = await Astro.callAction(
+const { data, error } = await Astro.callAction(
   actions.getProductsByPageRowQuery,
   {}
 )
@@ -18,8 +15,11 @@ const { data: products, error } = await Astro.callAction(
 if (error) {
   return Astro.redirect('/')
 }
+
+const { products } = data
 ---
 
 <MainLayout>
-  <h1 class='text-3xl'>Home Page</h1>
+  <h1 class='text-3xl py-8'>List of Products</h1>
+  <ProductList client:load products={products} />
 </MainLayout>
