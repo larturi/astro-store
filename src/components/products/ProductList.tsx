@@ -1,4 +1,4 @@
-import type { ProductWithImages } from '@/interfaces/product-with_images.interface'
+import type { ProductWithImages } from '@/interfaces/product-with-images.interface'
 import ProductCard from './ProductCard'
 
 interface Props {

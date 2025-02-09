@@ -1,4 +1,4 @@
-import type { ProductWithImages } from '@/interfaces/product-with_images.interface'
+import type { ProductWithImages } from '@/interfaces/product-with-images.interface'
 import { defineAction } from 'astro:actions'
 import { count, db, eq, Product, ProductImage, sql } from 'astro:db'
 import { z } from 'astro:schema'

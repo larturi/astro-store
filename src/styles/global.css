@@ -24,3 +24,35 @@ h4 {
 h5 {
     @apply text-base;
 }
+
+// Products
+h3 {
+    @apply font-bold;
+}
+
+li {
+    @apply hover:underline cursor-pointer;
+}
+
+.selected-size {
+    @apply text-blue-500 underline font-bold transition-all;
+}
+
+.btn-quantity {
+    @apply w-10 text-center p-2 border border-gray-300 hover:bg-gray-100 cursor-pointer;
+}
+
+input {
+    @apply w-16 text-center p-2 border border-gray-300;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type='number'] {
+    -moz-appearance: textfield;
+    /* Para Firefox */
+}
