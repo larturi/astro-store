@@ -1,0 +1,35 @@
+---
+interface Props {
+  totalPages: number
+}
+
+const { totalPages } = Astro.props
+
+const url = Astro.url
+const pageParam = Number(url.searchParams.get('page')) ?? 1
+const currentPage = Math.max(pageParam > totalPages ? totalPages : pageParam, 1)
+
+const path = url.pathname
+---
+
+<div
+  class='flex justify-between items-center my-8 p-4 bg-gray-100 rounded-lg shadow-md'
+>
+  <a
+    href={`${path}?page=${Math.max(currentPage - 1, 1)}`}
+    class={`text-blue-500 hover:text-blue-700 ${currentPage <= 1 ? 'disabled text-gray-400 cursor-normal hover:text-gray-400' : ''}`}
+  >
+    Anteriores
+  </a>
+
+  <span class='text-gray-700 font-semibold'>
+    Página {currentPage} de {totalPages}
+  </span>
+
+  <a
+    href={`${path}?page=${Math.min(currentPage + 1, totalPages)}`}
+    class={`text-blue-500 hover:text-blue-700 ${currentPage >= totalPages ? 'disabled text-gray-400 cursor-normal hover:text-gray-400' : ''}`}
+  >
+    Siguientes
+  </a>
+</div>

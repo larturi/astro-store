@@ -19,14 +19,15 @@ const ProductCard = ({ product }: Props) => {
       href={`/products/${product.slug}`}
       onMouseEnter={() => setCurrentImage(images[1] ?? images[0])}
       onMouseLeave={() => setCurrentImage(images[0])}
+      className="block p-4 transition-transform transform hover:scale-105"
     >
       <img
-        src={currentImage}
-        alt={product.title}
-        className='h-[350px] object-contain'
+      src={currentImage}
+      alt={product.title}
+      className="w-full h-[200px] md:h-[350px] object-contain"
       />
-      <h4>{product.title}</h4>
-      <p>${product.price}</p>
+      <h4 className="mt-2 text-lg font-semibold text-center md:text-left">{product.title}</h4>
+      <p className="mt-1 text-center md:text-left text-gray-700">${product.price}</p>
     </a>
   )
 }
