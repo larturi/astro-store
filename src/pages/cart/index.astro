@@ -2,10 +2,23 @@
 export const prerender = false
 
 import MainLayout from '@/layouts/MainLayout.astro'
+import { actions } from 'astro:actions'
 
 const cart = Astro.cookies.get('cart')
 
-console.log(cart)
+const productsInCartCookie = Astro.cookies.get('cart')?.json() ?? []
+
+const { data: products, error } = await Astro.callAction(
+  actions.loadProductsCart,
+  productsInCartCookie
+)
+
+if (error) {
+  console.error(error)
+  return Astro.redirect('/')
+}
+
+console.log(products)
 ---
 
 <MainLayout title='Cart' description='Cart'>
