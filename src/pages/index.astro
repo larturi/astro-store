@@ -16,7 +16,7 @@ const { data, error } = await Astro.callAction(
   }
 )
 
-if (error) {
+if (error || data.products.length === 0) {
   return Astro.redirect('/')
 }
 

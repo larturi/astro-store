@@ -57,6 +57,8 @@ const { product, images } = data
 </MainLayout>
 
 <script>
+  import { CartCookiesClient } from '@/utils'
+
   const sizeElements = document.querySelectorAll('li')
 
   sizeElements.forEach((liElement) => {
@@ -94,10 +96,12 @@ const { product, images } = data
 
     addToCardButton.disabled = true
 
-    console.log({
-      id: productIdInput.value,
+    CartCookiesClient.addItemToCart({
+      productId: productIdInput.value,
       size: size,
       quantity: quantity
     })
+
+    window.location.href = '/cart'
   })
 </script>

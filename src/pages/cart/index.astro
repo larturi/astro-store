@@ -1,0 +1,15 @@
+---
+export const prerender = false
+
+import MainLayout from '@/layouts/MainLayout.astro'
+
+const cart = Astro.cookies.get('cart')
+
+console.log(cart)
+---
+
+<MainLayout title='Cart' description='Cart'>
+  <h1>Cart</h1>
+
+  <code>{JSON.stringify(cart)}</code>
+</MainLayout>
