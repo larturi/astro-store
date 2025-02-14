@@ -58,6 +58,7 @@ const { product, images } = data
 
 <script>
   import { CartCookiesClient } from '@/utils'
+  import { itemsInCart } from '@/store/cart.store'
 
   const sizeElements = document.querySelectorAll('li')
 
@@ -94,14 +95,16 @@ const { product, images } = data
       return alert('Seleccione una talla')
     }
 
-    addToCardButton.disabled = true
+    // addToCardButton.disabled = true
 
-    CartCookiesClient.addItemToCart({
+    const cart = CartCookiesClient.addItemToCart({
       productId: productIdInput.value,
       size: size,
       quantity: quantity
     })
 
-    window.location.href = '/cart'
+    itemsInCart.set(cart.length)
+
+    // window.location.href = '/cart'
   })
 </script>

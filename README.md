@@ -9,14 +9,14 @@
 
 ## Getting Started
 
-1. Install dependencies: `bun install`
+1. Install dependencies: `pnpm install`
 
 2. Clonar .env.template y renombrar a .env
 
-3. Start in Dev Mode `bun run dev`
+3. Start in Dev Mode `pnpm run dev`
 
 ## Build to Production
 
 ```bash
-bun run build
+pnpm run build
 ```
