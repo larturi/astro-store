@@ -14,7 +14,7 @@
     "@astrojs/react": "^4.2.0",
     "@auth/core": "^0.37.4",
     "@nanostores/react": "^0.8.4",
-    "@tailwindcss/vite": "^4.0.3",
+    "@tailwindcss/vite": "^4.0.6",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "astro": "^5.2.5",
@@ -26,7 +26,6 @@
     "react-dom": "^19.0.0",
     "sweetalert2": "^11.15.10",
     "swiper": "^11.2.2",
-    "tailwindcss": "^4.0.3",
     "uuid": "^11.0.5"
   },
   "devDependencies": {

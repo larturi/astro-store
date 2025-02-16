@@ -6,9 +6,9 @@ import netlify from '@astrojs/netlify'
 
 import auth from 'auth-astro'
 
-import db from '@astrojs/db';
+import db from '@astrojs/db'
 
-import react from '@astrojs/react';
+import react from '@astrojs/react'
 
 // https://astro.build/config
 export default defineConfig({
