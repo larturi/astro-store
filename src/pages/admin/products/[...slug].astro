@@ -26,6 +26,8 @@ const { product, images } = data
   <a href='javascript:history.back()' class='text-blue-500'>← Volver</a>
 
   <form class='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+    <input type='hidden' name='id' value={product.id} />
+
     <!-- Datos generales -->
     <div class='mt-2'>
       <h2 class='text-lg font-semibold'>Datos generales</h2>
@@ -157,7 +159,7 @@ const { product, images } = data
             ['XS', 'S', 'M', 'L', 'XL', 'XXL'].map((size) => (
               <button
                 type='button'
-                class='rounded border cursor-pointer border-gray-300 w-10 h-10 mr-4 hover:bg-blue-300 hover:text-white transition-all'
+                class='btn-size rounded border cursor-pointer border-gray-300 w-10 h-10 mr-4 hover:bg-blue-300 hover:text-white transition-all'
                 onclick="this.classList.toggle('active')"
                 class:list={
                   product.sizes.split(',').includes(size) ? 'active' : ''
@@ -265,29 +267,40 @@ const { product, images } = data
 </MainLayout>
 
 <script>
+  import { actions } from 'astro:actions'
+  import { navigate } from 'astro:transitions/client'
+
   document.addEventListener('astro:page-load', () => {
-    const form = document.querySelector('form') as HTMLFormElement
+    const form = document.querySelector('form')
+    if (!form) return
+
+    const sizeButtons = document.querySelectorAll('.btn-size')
+
+    sizeButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        button.classList.toggle('active')
+      })
+    })
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault()
 
-      const sizeButtons = document.querySelectorAll('.btn-size')
-
       const selectedSizes = Array.from(sizeButtons)
         .filter((button) => button.classList.contains('active'))
-        .map((button) => button.textContent?.trim())
+        .map((button) => button.textContent?.trim() ?? '')
         .join(',')
-
-      if (!form) {
-        return
-      }
 
       const formData = new FormData(form)
       formData.set('sizes', selectedSizes)
 
-      const formValues = Object.fromEntries(formData.entries())
+      const { data, error } = await actions.creteUpdateProduct(formData)
 
-      console.log(formValues)
+      if (error) {
+        console.error(error)
+        return
+      }
+
+      navigate(`/admin/products/${data.slug}`)
     })
   })
 </script>

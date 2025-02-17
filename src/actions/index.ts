@@ -1,5 +1,6 @@
 import { loginUser, logout, registerUser } from './auth'
 import { loadProductsCart } from './cart/load-products-cart.action'
+import { creteUpdateProduct } from './products/create-update-product.action'
 import { getProductsBySlug } from './products/get-product-by-slug.action'
 import { getProductsByPageRowQuery } from './products/get-products-by-page.action'
 
@@ -16,5 +17,9 @@ export const server = {
   getProductsBySlug,
 
   // Cart
-  loadProductsCart
+  loadProductsCart,
+
+  // Admin
+  // Products
+  creteUpdateProduct
 }
