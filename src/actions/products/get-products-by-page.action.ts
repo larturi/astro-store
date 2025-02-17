@@ -58,8 +58,15 @@ export const getProductsByPageRowQuery = defineAction({
 
     const { rows } = await db.run(productsQuery)
 
+    const products = rows.map((product) => {
+      return {
+        ...product,
+        images: product.images ? product.images : 'no-image.png'
+      }
+    }) as unknown as ProductWithImages[]
+
     return {
-      products: rows as unknown as ProductWithImages[],
+      products,
       totalPages: totalPages
     }
   }

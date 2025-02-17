@@ -220,13 +220,14 @@ const { product, images } = data
 
             <!-- class="hidden" -->
             <!-- accept only images -->
-            <div class='hidden'>
+            <div class='hidden' id='file-input-container'>
               <input
                 id='file-upload'
                 name='imageFiles'
                 type='file'
                 accept='image/*'
                 multiple
+                onchange="document.getElementById('lbl-selected-files').textContent = this.files.length > 0 ? `${this.files.length} archivos seleccionados` : 'Click aquí o arrastra los archivos'"
               />
             </div>
           </label>
@@ -278,7 +279,7 @@ const { product, images } = data
 
     sizeButtons.forEach((button) => {
       button.addEventListener('click', () => {
-        button.classList.toggle('active')
+        button.classList.toggle('.active')
       })
     })
 
