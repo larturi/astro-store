@@ -234,28 +234,39 @@ const { product, images } = data
         </div>
 
         <!-- Slideshow -->
-        <ProductSlideshow images={images} />
+        <div class='mt-5 mb-5'>
+          <ProductSlideshow images={images.map((i) => i.image)} />
+        </div>
 
-        <table class='w-full border'>
+        <!-- Tabla de imagenes -->
+        <table
+          class='w-full border border-gray-300 shadow-sm rounded-lg overflow-hidden mb-20'
+        >
           <thead>
-            <tr>
-              <th>Imagen</th>
-              <th>Eliminar</th>
+            <tr class='bg-gray-100 text-gray-700 text-left'>
+              <th class='p-3 border-b border-gray-300'>Imagen</th>
+              <th class='p-3 border-b border-gray-300 text-center'>Eliminar</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class='bg-white divide-y divide-gray-200'>
             {
-              images.map((image) => (
-                <tr class='border'>
-                  <td class='flex justify-center'>
+              images.map(({ image, id }) => (
+                <tr class='hover:bg-gray-50 transition-all' id={id}>
+                  <td class='p-3 flex justify-center'>
                     <ProductImage
                       src={image}
                       alt={product.title}
-                      className='w-16 h-16 rounded'
+                      className='w-20 h-20 rounded-lg shadow-md border border-gray-200 object-cover'
                     />
                   </td>
-                  <td class='text-center'>
-                    <button class='btn-delete-image'>X</button>
+                  <td class='text-center p-3'>
+                    <button
+                      type='button'
+                      data-id={id}
+                      class='bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition-all'
+                    >
+                      X
+                    </button>
                   </td>
                 </tr>
               ))
@@ -303,5 +314,27 @@ const { product, images } = data
 
       navigate(`/admin/products/${data.slug}`)
     })
+
+    // Eliminar imagenes
+    const deleteButtons = document.querySelectorAll('button[data-id]')
+    deleteButtons.forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const id = btn.getAttribute('data-id')
+
+        if (!id) return
+
+        const { error } = await actions.deleteProductImage(id)
+
+        if (error) {
+          console.error(1111)
+          console.error(error)
+          return
+        }
+
+        document.querySelector(`tr[id="${id}"]`)?.remove()
+      })
+    })
+
+    // Fin de Astro:page-load
   })
 </script>
